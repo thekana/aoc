@@ -1,6 +1,9 @@
 package com.github.thekana.aoc
 package y2021
 
+/**
+ * https://adventofcode.com/2021/day/2
+ */
 object Day2 {
   def part1(commands: Seq[(String, Int)]): Int = {
     val finalPost = commands.foldLeft[(Int, Int)](0, 0) {
