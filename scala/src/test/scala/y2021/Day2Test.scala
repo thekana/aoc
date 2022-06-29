@@ -5,15 +5,15 @@ import utils.InputReader
 
 import org.scalatest.flatspec.AnyFlatSpec
 
-class Day1Test extends AnyFlatSpec {
+class Day2Test extends AnyFlatSpec {
 
-  implicit val filePath: String = "src/test/resources/day1/input.txt"
+  implicit val filePath: String = "src/test/resources/day2/input.txt"
 
   "part1" should "be correct" in new InputReader {
-    assert(usingInput(Day1.part1) == 1521)
+    assert(usingInput(Day2.part1) == 1636725)
   }
 
   "part2" should "be correct" in new InputReader {
-    assert(usingInput(Day1.part2) == 1543)
+    assert(usingInput(Day2.part2) == 1872757425)
   }
 }
