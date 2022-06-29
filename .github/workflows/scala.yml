@@ -23,4 +23,5 @@ jobs:
         distribution: 'temurin'
         cache: 'sbt'
     - name: Run tests
+      working-directory: ./scala
       run: sbt test
