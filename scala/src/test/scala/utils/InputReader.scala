@@ -6,10 +6,18 @@ import scala.io.{BufferedSource, Source}
 trait InputReader {
   def usingInput[A, B](f: Seq[B] => A)(implicit filePath: String, parser: Parser[B]): A = {
     val source: BufferedSource = Source.fromFile(filePath)
-    val input = source.getLines.map(parser.parse).toSeq
+    val input                  = source.getLines.map(parser.parse).toSeq
     source.close()
     f(input)
   }
+
+  def withSourceFile[T](filePath: String)(f: BufferedSource => T): T = {
+    val source: BufferedSource = Source.fromFile(filePath)
+    val result                 = f(source)
+    source.close()
+    result
+  }
+
 }
 
 trait Parser[T] {
