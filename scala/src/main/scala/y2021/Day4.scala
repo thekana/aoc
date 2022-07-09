@@ -10,14 +10,38 @@ object Day4 {
     var bingoBoards = boards.map(BingoBoard(_))
 
     for (numberDrawn <- numbersDrawn) {
-      println(s"Number Drawn $numberDrawn")
+//      println(s"Number Drawn $numberDrawn")
       val nextState = bingoBoards.map(_.mark(numberDrawn))
-      nextState.foreach(_.print())
+//      nextState.foreach(_.print())
+      bingoBoards = nextState
       val winner = nextState.find(_.getWinner.nonEmpty)
       if (winner.nonEmpty) {
         return winner.get.sumOfUnmarkedNumbers * numberDrawn
       }
+    }
+    throw new IllegalStateException("no winner")
+  }
+
+  def part2(numbersDrawn: List[Int], boards: List[List[Int]]): Int = {
+
+    var bingoBoards = boards.map(BingoBoard(_))
+
+    for (numberDrawn <- numbersDrawn) {
+//      println(s"Number Drawn $numberDrawn")
+
+      val nextState = bingoBoards.map(_.mark(numberDrawn))
+//      nextState.foreach(_.print())
+
       bingoBoards = nextState
+      val winners = nextState.filter(_.getWinner.nonEmpty)
+      winners.foreach { winner =>
+        // check if it's the last winner
+        if (bingoBoards.length == 1) {
+          return winner.sumOfUnmarkedNumbers * numberDrawn
+        }
+        // drop winner
+        bingoBoards = bingoBoards.filterNot(_ == winner)
+      }
     }
     throw new IllegalStateException("no winner")
   }

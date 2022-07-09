@@ -31,4 +31,14 @@ class Day4Test extends AnyFlatSpec with InputReader {
     override val filePath: String = puzzleFilePath
     assert(Day4.part1(numbersDrawn, boards) == 29440)
   }
+
+  "part2" should "example" in new BingoDataScope {
+    override val filePath: String = exampleFilePath
+    assert(Day4.part2(numbersDrawn, boards) == 1924)
+  }
+
+  "part2" should "puzzle" in new BingoDataScope {
+    override val filePath: String = puzzleFilePath
+    assert(Day4.part2(numbersDrawn, boards) == 13884)
+  }
 }
